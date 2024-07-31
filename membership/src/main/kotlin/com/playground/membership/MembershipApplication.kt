@@ -1,11 +1,11 @@
-package com.example
+package com.playground.membership
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class DemoApplication
+class MembershipApplication
 
 fun main(args: Array<String>) {
-    runApplication<DemoApplication>(*args)
+    runApplication<MembershipApplication>(*args)
 }
