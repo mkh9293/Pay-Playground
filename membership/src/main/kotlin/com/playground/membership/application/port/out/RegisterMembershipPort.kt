@@ -1,15 +1,8 @@
 package com.playground.membership.application.port.out
 
-import com.playground.membership.adapter.out.persistence.MembershipEntity
+import com.playground.membership.application.port.`in`.RegisterMembershipCommand
+import com.playground.membership.domain.Membership
 
 interface RegisterMembershipPort {
-
-    fun createMembership(
-        name: String,
-        email: String,
-        address: String,
-        isValid: Boolean,
-        isCorp: Boolean
-    ): MembershipEntity
-
+    fun createMembership(command: RegisterMembershipCommand): Membership
 }

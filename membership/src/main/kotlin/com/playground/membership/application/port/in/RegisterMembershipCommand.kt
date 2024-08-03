@@ -1,6 +1,5 @@
 package com.playground.membership.application.port.`in`
 
-import com.playground.membership.adapter.`in`.web.RegisterMembershipRequest
 import jakarta.validation.constraints.AssertTrue
 import jakarta.validation.constraints.NotBlank
 
@@ -18,18 +17,4 @@ data class RegisterMembershipCommand(
     val isValid: Boolean,
 
     val isCorp: Boolean
-) {
-
-    companion object {
-        fun of(request: RegisterMembershipRequest): RegisterMembershipCommand {
-            return RegisterMembershipCommand(
-                name = request.name,
-                email = request.email,
-                address = request.email,
-                isValid = true,
-                isCorp = request.isCorp
-            )
-        }
-    }
-
-}
+)
