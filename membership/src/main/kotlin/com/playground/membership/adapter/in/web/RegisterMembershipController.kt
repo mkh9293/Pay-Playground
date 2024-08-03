@@ -1,14 +1,23 @@
 package com.playground.membership.adapter.`in`.web
 
-import org.springframework.web.bind.annotation.GetMapping
+import com.playground.membership.application.port.`in`.RegisterMembershipCommand
+import com.playground.membership.application.port.`in`.RegisterMembershipUseCase
+import com.playground.membership.common.WebAdapter
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
+@WebAdapter
 @RestController
-class RegisterMembershipController {
+class RegisterMembershipController(
+    private val registerMembershipUseCase: RegisterMembershipUseCase
+) {
 
-    @GetMapping("/")
-    fun demo():String {
-        return "hello"
+    @PostMapping("/membership/register")
+    fun registerMembership(@RequestBody request: RegisterMembershipRequest) {
+        val command = RegisterMembershipCommand.of(request)
+
+        registerMembershipUseCase.registerMembership(command)
     }
 
 }
