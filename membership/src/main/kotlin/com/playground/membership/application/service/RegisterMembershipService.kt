@@ -1,5 +1,6 @@
 package com.playground.membership.application.service
 
+import com.playground.membership.adapter.out.persistence.MembershipMapper
 import com.playground.membership.application.port.`in`.RegisterMembershipCommand
 import com.playground.membership.application.port.`in`.RegisterMembershipUseCase
 import com.playground.membership.application.port.out.RegisterMembershipPort
@@ -14,7 +15,9 @@ class RegisterMembershipService(
 
     @Transactional
     override fun registerMembership(command: RegisterMembershipCommand): Membership {
-        return registerMembershipPort.createMembership(command)
+        val result = registerMembershipPort.createMembership(command)
+
+        return MembershipMapper.toDomain(result)
     }
 
 }

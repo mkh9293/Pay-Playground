@@ -25,7 +25,7 @@ data class RegisterMembershipCommand(
             return RegisterMembershipCommand(
                 name = request.name,
                 email = request.email,
-                address = request.email,
+                address = request.address,
                 isValid = true,
                 isCorp = request.isCorp
             )

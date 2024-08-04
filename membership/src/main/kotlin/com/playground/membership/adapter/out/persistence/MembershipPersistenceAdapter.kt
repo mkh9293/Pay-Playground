@@ -1,17 +1,18 @@
 package com.playground.membership.adapter.out.persistence
 
+import com.playground.membership.application.port.`in`.FindMembershipCommand
 import com.playground.membership.application.port.`in`.RegisterMembershipCommand
+import com.playground.membership.application.port.out.FindMembershipPort
 import com.playground.membership.application.port.out.RegisterMembershipPort
 import com.playground.membership.common.PersistenceAdapter
-import com.playground.membership.domain.Membership
 
 @PersistenceAdapter
 class MembershipPersistenceAdapter(
     private val membershipRepository: MembershipRepository
-): RegisterMembershipPort {
+): RegisterMembershipPort, FindMembershipPort {
 
-    override fun createMembership(command: RegisterMembershipCommand): Membership {
-        val entity = membershipRepository.save(
+    override fun createMembership(command: RegisterMembershipCommand): MembershipEntity {
+        return membershipRepository.save(
             MembershipEntity(
                 name = command.name,
                 email = command.email,
@@ -20,8 +21,10 @@ class MembershipPersistenceAdapter(
                 isCorp = command.isCorp
             )
         )
+    }
 
-        return MembershipMapper.toDomain(entity)
+    override fun findMembershipById(command: FindMembershipCommand): MembershipEntity {
+        return membershipRepository.findById(command.membershipId).orElseThrow()
     }
 
 }
