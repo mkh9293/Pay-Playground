@@ -16,11 +16,12 @@ class FindMembershipController(
 ) {
 
     @GetMapping("/{membershipId}")
-    fun findMembershipById(@PathVariable membershipId: Long): ResponseEntity<Membership> {
+    fun findMembershipById(@PathVariable membershipId: String): ResponseEntity<Membership> {
         val command = FindMembershipCommand.toCommand(membershipId)
 
-        return ResponseEntity.ok()
-            .body(findMembershipUseCase.findMembershipById(command))
+        val result = findMembershipUseCase.findMembershipById(command)
+
+        return ResponseEntity.ok(result)
     }
 
 }

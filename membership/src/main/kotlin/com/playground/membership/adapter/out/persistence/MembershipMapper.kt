@@ -5,7 +5,7 @@ import com.playground.membership.domain.Membership
 object MembershipMapper {
     fun toDomain(entity: MembershipEntity): Membership {
         return Membership(
-            membershipId = entity.membershipId,
+            membershipId = entity.membershipId.toString(),
             name = entity.name,
             email = entity.email,
             address = entity.address,

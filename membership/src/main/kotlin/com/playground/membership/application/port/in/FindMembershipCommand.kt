@@ -4,11 +4,11 @@ import jakarta.validation.constraints.NotBlank
 
 data class FindMembershipCommand(
     @field:NotBlank
-    val membershipId: Long
+    val membershipId: String
 ) {
 
     companion object {
-        fun toCommand(membershipId: Long): FindMembershipCommand {
+        fun toCommand(membershipId: String): FindMembershipCommand {
             return FindMembershipCommand(
                 membershipId = membershipId
             )

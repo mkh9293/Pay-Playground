@@ -16,7 +16,7 @@ class RegisterMembershipController(
 
     @PostMapping("/membership/register")
     fun registerMembership(@RequestBody request: RegisterMembershipRequest): Membership {
-        val command = RegisterMembershipCommand.of(request)
+        val command = RegisterMembershipCommand.toCommand(request)
 
         return registerMembershipUseCase.registerMembership(command)
     }
