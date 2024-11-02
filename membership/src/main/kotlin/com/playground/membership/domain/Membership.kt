@@ -1,10 +1,10 @@
 package com.playground.membership.domain
 
 data class Membership(
-    val membershipId: Long,
-    val name: String,
-    val email: String,
-    val address: String,
-    val isValid: Boolean,
-    val isCorp: Boolean
+    private val membershipId: Long,
+    private val name: String,
+    private val email: String,
+    private val address: String,
+    private val isValid: Boolean,
+    private val isCorp: Boolean
 )
