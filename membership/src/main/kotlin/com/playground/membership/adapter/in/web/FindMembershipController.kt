@@ -1,5 +1,6 @@
 package com.playground.membership.adapter.`in`.web
 
+import com.playground.common.WebAdapter
 import com.playground.membership.application.port.`in`.FindMembershipCommand
 import com.playground.membership.application.port.`in`.FindMembershipUseCase
 import com.playground.membership.domain.Membership
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+@WebAdapter
 @RestController
 @RequestMapping("/membership")
 class FindMembershipController(

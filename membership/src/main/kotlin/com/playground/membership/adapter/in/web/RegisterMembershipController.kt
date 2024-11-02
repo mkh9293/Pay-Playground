@@ -1,8 +1,8 @@
 package com.playground.membership.adapter.`in`.web
 
+import com.playground.common.WebAdapter
 import com.playground.membership.application.port.`in`.RegisterMembershipCommand
 import com.playground.membership.application.port.`in`.RegisterMembershipUseCase
-import com.playground.membership.common.WebAdapter
 import com.playground.membership.domain.Membership
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

@@ -1,4 +1,4 @@
-package com.playground.membership.common
+package com.playground.common
 
 import org.springframework.core.annotation.AliasFor
 import org.springframework.stereotype.Component

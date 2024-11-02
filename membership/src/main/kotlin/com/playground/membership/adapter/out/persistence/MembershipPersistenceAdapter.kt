@@ -1,12 +1,12 @@
 package com.playground.membership.adapter.out.persistence
 
+import com.playground.common.PersistenceAdapter
 import com.playground.membership.application.port.`in`.FindMembershipCommand
 import com.playground.membership.application.port.`in`.ModifyMembershipCommand
 import com.playground.membership.application.port.`in`.RegisterMembershipCommand
 import com.playground.membership.application.port.out.FindMembershipPort
 import com.playground.membership.application.port.out.ModifyMembershipPort
 import com.playground.membership.application.port.out.RegisterMembershipPort
-import com.playground.membership.common.PersistenceAdapter
 
 @PersistenceAdapter
 class MembershipPersistenceAdapter(
