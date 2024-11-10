@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "com.playground.membership"
-version = "1.0.0"
+version = "1.0.1"
 
 dependencies {
     // common
@@ -12,12 +12,16 @@ dependencies {
     // swagger
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
 
-    runtimeOnly("com.h2database:h2")
+//    runtimeOnly("com.h2database:h2")
+    implementation("mysql:mysql-connector-java:8.0.33")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 docker {
-    name = "${project.group}/${project.name}:${project.version}"
-    files("build/libs/${project.name}-${project.version}.jar")
-    buildArgs(mapOf("JAR_FILE" to "${project.name}-${project.version}.jar"))
+    name = "${rootProject.name.lowercase()}-${project.name}:${version}"
+
+    files("../Dockerfile", tasks.bootJar.get().outputs.files)
+
+    // Docker 빌드에 필요한 빌드 인자 설정
+    buildArgs(mapOf("JAR_FILE" to tasks.bootJar.get().outputs.files.singleFile.name))
 }
