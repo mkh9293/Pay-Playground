@@ -6,3 +6,4 @@ pluginManagement {
 rootProject.name = "Pay-Playground"
 include("membership")
 include("common")
+include("banking-service")

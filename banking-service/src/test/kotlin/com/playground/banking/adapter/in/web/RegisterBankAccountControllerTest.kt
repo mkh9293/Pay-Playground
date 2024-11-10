@@ -1,7 +1,7 @@
-package com.playground.membership.adapter.`in`.web
+package com.playground.banking.adapter.`in`.web
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.playground.membership.domain.Membership
+import com.playground.banking.domain.RegisteredBankAccount
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 @ExtendWith(SpringExtension::class)
 @AutoConfigureMockMvc
 @SpringBootTest
-class RegisterMembershipControllerTest {
+class RegisterBankAccountControllerTest {
 
     @Autowired
     private lateinit var mockMvc: MockMvc
@@ -25,21 +25,20 @@ class RegisterMembershipControllerTest {
     private lateinit var mapper: ObjectMapper
 
     @Test
-    fun testRegisterMembership() {
+    fun testRegisterBankAccount() {
         // given
-        val request = RegisterMembershipRequest("name", "address", "email", false)
+        val request = RegisterBankAccountRequest("1", "kbBank", "1234567890", true)
 
-        val expect = Membership("1", "name", "email", "address", true, false)
+        val expect = RegisteredBankAccount("1", "1", "kbBank", "1234567890", true)
 
         // then
         mockMvc.perform(
-            MockMvcRequestBuilders.post("/membership/register")
+            MockMvcRequestBuilders.post("/banking/account/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(request))
         )
             .andExpect(MockMvcResultMatchers.status().isOk)
             .andExpect(MockMvcResultMatchers.content().string(mapper.writeValueAsString(expect)))
-
     }
 
 }

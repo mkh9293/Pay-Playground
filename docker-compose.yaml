@@ -11,7 +11,7 @@ services:
       - ./db/initdb.d:/docker-entrypoint-initdb.d
     env_file: .env
     ports:
-      - "3306"
+      - "3305:3306"
     environment:
       - TZ=Asia/Seoul
       - MYSQL_ROOT_PASSWORD=root
@@ -24,6 +24,21 @@ services:
       - pay_network
     ports:
       - "8081:8080"
+    depends_on:
+      - mysql
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/pay_playground?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=pw
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+
+  banking-service:
+    image: pay-playground-banking-service:1.0.1
+    networks:
+      - pay_network
+    ports:
+      - "8082:8080"
     depends_on:
       - mysql
     environment:
